@@ -39,6 +39,7 @@ export const AppReducer = (state, action) => {
                     ...state
                 }
             }
+            
             case 'RED_EXPENSE':
                 const red_expenses = state.expenses.map((currentExp)=> {
                     if (currentExp.name === action.payload.name && currentExp.cost - action.payload.cost >= 0) {
@@ -52,6 +53,7 @@ export const AppReducer = (state, action) => {
                     ...state,
                     expenses: [...red_expenses],
                 };
+
             case 'DELETE_EXPENSE':
             action.type = "DONE";
             state.expenses.map((currentExp)=> {
@@ -66,6 +68,7 @@ export const AppReducer = (state, action) => {
                 ...state,
                 budget
             };
+
         case 'SET_BUDGET':
             action.type = "DONE";
             state.budget = action.payload;
@@ -73,6 +76,7 @@ export const AppReducer = (state, action) => {
             return {
                 ...state,
             };
+
         case 'CHG_CURRENCY':
             action.type = "DONE";
             state.currency = action.payload;
@@ -91,7 +95,7 @@ const initialState = {
     expenses: [
         { id: "Marketing", name: 'Marketing', cost: 50 },
         { id: "Finance", name: 'Finance', cost: 300 },
-        { id: "Sales", name: 'Sales', cost: 50 },
+        { id: "Sales", name: 'Sales', cost: 60 },
         { id: "Human Resource", name: 'Human Resource', cost: 40 },
         { id: "IT", name: 'IT', cost: 500 },
         { id: "Admin", name: 'Admin', cost: 50 },
@@ -116,6 +120,9 @@ export const AppProvider = (props) => {
         remaining = state.budget - totalExpenses;
     }
 
+    const maxBudgetValue = 20000; // Set upper limit for Budget value here
+    
+
     return (
         <AppContext.Provider
             value={{
@@ -123,7 +130,8 @@ export const AppProvider = (props) => {
                 budget: state.budget,
                 remaining: remaining,
                 dispatch,
-                currency: state.currency
+                currency: state.currency,
+                upperLimit: maxBudgetValue // Provide upperLimit value in context
             }}
         >
             {props.children}
