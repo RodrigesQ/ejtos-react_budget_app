@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext,  useReducer } from 'react';
 
 // 5. The reducer - this is used to update the state, based on the action
 export const AppReducer = (state, action) => {
@@ -11,6 +11,15 @@ export const AppReducer = (state, action) => {
                     return previousExp + currentExp.cost
                 },0
             );
+
+            // Validate if the payload cost is a number
+              if (isNaN(action.payload.cost)) {
+                  alert("Please enter a valid number for the expense cost.");
+                  return {
+                      ...state
+                  };
+            }
+
             total_budget = total_budget + action.payload.cost;
             action.type = "DONE";
             if(total_budget <= state.budget) {
@@ -82,9 +91,10 @@ const initialState = {
     expenses: [
         { id: "Marketing", name: 'Marketing', cost: 50 },
         { id: "Finance", name: 'Finance', cost: 300 },
-        { id: "Sales", name: 'Sales', cost: 70 },
+        { id: "Sales", name: 'Sales', cost: 50 },
         { id: "Human Resource", name: 'Human Resource', cost: 40 },
         { id: "IT", name: 'IT', cost: 500 },
+        { id: "Admin", name: 'Admin', cost: 50 },
     ],
     currency: '£'
 };

@@ -16,65 +16,41 @@ import { AppProvider } from './context/AppContext';
 const App = () => {
     return (
         <AppProvider>
-            <div className='container'>
-                <h1 className='mt-3'>Company's Budget Allocation</h1>
-                    <div className='row mt-3'>
-                        {
-                            /* Add Budget component here */
-                            // Budget component
-                            <div className='col-sm'>
-                                <Budget />
-                            </div>
-                        }        
+      <div className='container'>
+        {/* Title row */}
+        <h1 className='mt-3'>Company's Budget Allocation</h1>
 
-                        {
-                            /* Add Remaining component here*/
+        {/* Four equal columns in a row */}
+        <div className='row mt-3'>
+          <div className='col-sm-3'>  {/* Budget component */}
+            <Budget />
+          </div>
+          <div className='col-sm-3'>  {/* Remaining component */}
+            <Remaining />
+          </div>
+          <div className='col-sm-3'>  {/* ExpenseTotal component */}
+            <ExpenseTotal />
+          </div>
+          <div className='col-sm-3'>  {/* ExpenseItem component */}
+            <ExpenseItem />
+          </div>
+        </div>
 
-                            //Remaining component
-                            <div className='col-sm'>
-                                <Remaining />
-                            </div>
-                        }        
+        {/* ExpenseList takes full row */}
+        <div className='row mt-3'>
+          <div className='col-sm-12'>  {/* ExpenseList component */}
+            <ExpenseList />
+          </div>
+        </div>
 
-                        {
-                            /* Add ExpenseTotal component here */
-
-                            //ExpenseTotal component
-                            <div className='col-sm'>
-                                <ExpenseTotal />
-                            </div>
-                        }        
-                       
-                        {
-                            /* Add ExpenseList component here */
-
-                            //ExpenseList component
-                            <div className='col-sm'>
-                                <ExpenseList />
-                            </div>
-                        }         
-
-                        {
-                            /* Add ExpenseItem component here */
-
-                            //ExpenseItem component
-                            <div className='col-sm'>
-                                <ExpenseItem />
-                            </div>
-                        }        
-
-                        {
-                            /* Add AllocationForm component here under */
-
-                            //AllocationForm component
-                            <div className='col-sm'>
-                                <AllocationForm />
-                            </div>
-                        }        
-
-                </div>
-            </div>
-        </AppProvider>
+        {/* AllocationForm takes full row */}
+        <div className='row mt-3'>
+          <div className='col-sm-12'>  {/* AllocationForm component */}
+            <AllocationForm />
+          </div>
+        </div>
+      </div>
+    </AppProvider>
     );
 };
 export default App;
