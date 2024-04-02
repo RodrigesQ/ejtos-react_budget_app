@@ -125,7 +125,8 @@ export const AppProvider = (props) => {
 
     // Function to update the currency symbol
     const updateCurrencySymbol = (symbol) => {
-        setCurrencySymbol(symbol);
+        dispatch({ type: 'CHG_CURRENCY', payload: symbol });
+        setCurrencySymbol(symbol); // Update the currency symbol state
     };
 
     

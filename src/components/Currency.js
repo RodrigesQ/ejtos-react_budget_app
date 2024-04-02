@@ -13,7 +13,7 @@ const Currency = () => {
 
     const [selectedCurrency, setSelectedCurrency] = useState(CURRENCIES[0]);
 
-    const handleChange = (event) => {
+    const handleCurrencyChange = (event) => {
         const selectedSymbol = event.target.value;
         const selectedCurrency = CURRENCIES.find((currency) => currency.symbol === selectedSymbol);
         setSelectedCurrency(selectedCurrency);
@@ -21,7 +21,7 @@ const Currency = () => {
         // Dispatch the CHG_CURRENCY action to update the currency symbol in the global state
         dispatch({
             type: 'CHG_CURRENCY',
-            payload: selectedSymbol,
+            payload: selectedCurrency,
         });
     };
 
@@ -31,7 +31,7 @@ const Currency = () => {
                 <select
                     id="currency"
                     value={selectedCurrency.symbol} 
-                    onChange={handleChange}
+                    onChange={handleCurrencyChange}
                     className="form-select border-0 alert alert-success"
                 >
                     {CURRENCIES.map((currency) => (
