@@ -18,11 +18,11 @@ const Currency = () => {
         const selectedCurrency = CURRENCIES.find((currency) => currency.symbol === selectedSymbol);
         setSelectedCurrency(selectedCurrency);
 
-        // Dispatch the CHG_CURRENCY action to update the currency symbol in the global state
+        /// Dispatch the CHG_CURRENCY action to update the currency symbol in the global state
         dispatch({
             type: 'CHG_CURRENCY',
-            payload: selectedCurrency,
-        });
+            payload: selectedCurrency.symbol, // Dispatch only the symbol
+    });
     };
 
     return (

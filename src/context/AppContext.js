@@ -100,7 +100,7 @@ const initialState = {
         { id: "IT", name: 'IT', cost: 500 },
         { id: "Admin", name: 'Admin', cost: 50 },
     ],
-    currency: '£'
+    currency: '£' //a. initial state with the currency symbol being '£'
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state
@@ -124,9 +124,9 @@ export const AppProvider = (props) => {
     const maxBudgetValue = 20000; // Set upper limit for Budget value here
 
     // Function to update the currency symbol
-    const updateCurrencySymbol = (symbol) => {
-        dispatch({ type: 'CHG_CURRENCY', payload: symbol });
-        setCurrencySymbol(symbol); // Update the currency symbol state
+    const updateCurrencySymbol = (currencySymbol) => {
+        dispatch({ type: 'CHG_CURRENCY', payload: currencySymbol });
+        setCurrencySymbol(currencySymbol); // Update the currency symbol state
     };
 
     
