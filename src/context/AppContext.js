@@ -1,4 +1,4 @@
-import React, { createContext,  useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 
 // 5. The reducer - this is used to update the state, based on the action
 export const AppReducer = (state, action) => {
@@ -111,6 +111,7 @@ export const AppContext = createContext();
 export const AppProvider = (props) => {
     // 4. Sets up the app state. takes a reducer, and an initial state
     const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [currencySymbol, setCurrencySymbol] = useState(initialState.currency); // Initialize currency symbol state
     let remaining = 0;
 
     if (state.expenses) {
@@ -121,6 +122,12 @@ export const AppProvider = (props) => {
     }
 
     const maxBudgetValue = 20000; // Set upper limit for Budget value here
+
+    // Function to update the currency symbol
+    const updateCurrencySymbol = (symbol) => {
+        setCurrencySymbol(symbol);
+    };
+
     
 
     return (
@@ -131,6 +138,8 @@ export const AppProvider = (props) => {
                 remaining: remaining,
                 dispatch,
                 currency: state.currency,
+                currencySymbol, // Include currencySymbol in the context value
+                updateCurrencySymbol, // Include updateCurrencySymbol function in the context value
                 upperLimit: maxBudgetValue // Provide upperLimit value in context
             }}
         >

@@ -27,7 +27,7 @@ const ExpenseItem = (props) => {
     }
 
     return (
-        <tr style={{ marginLeft: '2rem', border: '1px solid lightblue' }}>
+        <tr style={{ marginLeft: '2rem'}}>
             <td>{props.name}</td>
             <td>£{props.cost}</td>
             <td><button onClick={event => increaseAllocation(props.name)}>+</button></td>

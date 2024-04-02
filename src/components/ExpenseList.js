@@ -7,7 +7,7 @@ const ExpenseList = () => {
     const { expenses } = useContext(AppContext);
 
     return (
-        <table className='table'>
+        <table className='table' >
               <thead className="thead-light">
             <tr>
               <th scope="col">Department</th>

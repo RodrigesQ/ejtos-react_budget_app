@@ -33,7 +33,7 @@ const Budget = () => {
     
 
     return (
-        <div className='alert alert-secondary' style={{ marginLeft: '2rem', border: '1px solid lightblue' }}>
+        <div className='alert alert-secondary' style={{ marginLeft: '2rem'}}>
             <span>Budget: £{budget}</span>
             <input 
                 type="number" 

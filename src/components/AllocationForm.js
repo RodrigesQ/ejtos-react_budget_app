@@ -43,10 +43,10 @@ const AllocationForm = (props) => {
     };
 
     return (
-        <div style={{ marginLeft: '2rem', border: '1px solid lightblue' }}>
-            <div className='row' style={{  border: '1px solid lightblue' }}>
+        <div style={{ marginLeft: '2rem' }}>
+            <div className='row' >
 
-            <div className="input-group mb-3" style={{ marginLeft: '2rem', border: '1px solid lightblue' }}>
+            <div className="input-group mb-3" style={{ marginLeft: '2rem' }}>
                     <div className="input-group-prepend">
                         <label className="input-group-text" htmlFor="inputGroupSelect01">Department</label>
                     </div>
