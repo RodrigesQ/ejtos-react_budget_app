@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Remaining = () => {
-    const { expenses, budget, currencySymbol } = useContext(AppContext);
+    const { expenses, budget, currency } = useContext(AppContext);
     const [remainingBudget, setRemainingBudget] = useState(0);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const Remaining = () => {
 
     return (
         <div className={`alert ${alertType}`} >
-            <span>Remaining: {currencySymbol} {Math.abs(remainingBudget)}</span>
+            <span>Remaining: {currency} {Math.abs(remainingBudget)}</span>
         </div>
     );
 };

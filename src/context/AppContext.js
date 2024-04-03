@@ -9,23 +9,23 @@ export const AppReducer = (state, action) => {
             total_budget = state.expenses.reduce(
                 (previousExp, currentExp) => {
                     return previousExp + currentExp.cost
-                },0
+                }, 0
             );
 
             // Validate if the payload cost is a number
-              if (isNaN(action.payload.cost)) {
-                  alert("Please enter a valid number for the expense cost.");
-                  return {
-                      ...state
-                  };
+            if (isNaN(action.payload.cost)) {
+                alert("Please enter a valid number for the expense cost.");
+                return {
+                    ...state
+                };
             }
 
             total_budget = total_budget + action.payload.cost;
             action.type = "DONE";
-            if(total_budget <= state.budget) {
+            if (total_budget <= state.budget) {
                 total_budget = 0;
-                state.expenses.map((currentExp)=> {
-                    if(currentExp.name === action.payload.name) {
+                state.expenses.map((currentExp) => {
+                    if (currentExp.name === action.payload.name) {
                         currentExp.cost = action.payload.cost + currentExp.cost;
                     }
                     return currentExp
@@ -39,27 +39,27 @@ export const AppReducer = (state, action) => {
                     ...state
                 }
             }
-            
-            case 'RED_EXPENSE':
-                const red_expenses = state.expenses.map((currentExp)=> {
-                    if (currentExp.name === action.payload.name && currentExp.cost - action.payload.cost >= 0) {
-                        currentExp.cost =  currentExp.cost - action.payload.cost;
-                        budget = state.budget + action.payload.cost
-                    }
-                    return currentExp
-                })
-                action.type = "DONE";
-                return {
-                    ...state,
-                    expenses: [...red_expenses],
-                };
 
-            case 'DELETE_EXPENSE':
+        case 'RED_EXPENSE':
+            const red_expenses = state.expenses.map((currentExp) => {
+                if (currentExp.name === action.payload.name && currentExp.cost - action.payload.cost >= 0) {
+                    currentExp.cost = currentExp.cost - action.payload.cost;
+                    budget = state.budget + action.payload.cost
+                }
+                return currentExp
+            })
             action.type = "DONE";
-            state.expenses.map((currentExp)=> {
+            return {
+                ...state,
+                expenses: [...red_expenses],
+            };
+
+        case 'DELETE_EXPENSE':
+            action.type = "DONE";
+            state.expenses.map((currentExp) => {
                 if (currentExp.name === action.payload) {
                     budget = state.budget + currentExp.cost
-                    currentExp.cost =  0;
+                    currentExp.cost = 0;
                 }
                 return currentExp
             })
@@ -80,9 +80,11 @@ export const AppReducer = (state, action) => {
         case 'CHG_CURRENCY':
             action.type = "DONE";
             state.currency = action.payload;
+
             return {
-                ...state
-            }
+                ...state,
+                currency: action.payload
+            };
 
         default:
             return state;
@@ -112,24 +114,23 @@ export const AppProvider = (props) => {
     // 4. Sets up the app state. takes a reducer, and an initial state
     const [state, dispatch] = useReducer(AppReducer, initialState);
     const [currencySymbol, setCurrencySymbol] = useState(initialState.currency); // Initialize currency symbol state
+    const maxBudgetValue = 20000; // Set upper limit for Budget value here
     let remaining = 0;
 
     if (state.expenses) {
-            const totalExpenses = state.expenses.reduce((total, item) => {
+        const totalExpenses = state.expenses.reduce((total, item) => {
             return (total = total + item.cost);
         }, 0);
         remaining = state.budget - totalExpenses;
     }
 
-    const maxBudgetValue = 20000; // Set upper limit for Budget value here
-
     // Function to update the currency symbol
     const updateCurrencySymbol = (currencySymbol) => {
         dispatch({ type: 'CHG_CURRENCY', payload: currencySymbol });
-        setCurrencySymbol(currencySymbol); // Update the currency symbol state
+        setCurrencySymbol(currencySymbol);
     };
 
-    
+
 
     return (
         <AppContext.Provider
